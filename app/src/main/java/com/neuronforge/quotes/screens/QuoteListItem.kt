@@ -24,18 +24,22 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.neuronforge.quotes.models.Quote
 
 
 @Composable
-fun QuoteListItem(quote: Quote, onClick: (quote:Quote) -> Unit) {
-    Card(elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
+    Card(
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = Modifier
             .padding(8.dp)
             .clickable { onClick(quote) }) {
         Row(
             modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
                 .background(Color(0xFFFFFFFF))
                 .padding(12.dp)
         ) {
@@ -55,7 +59,9 @@ fun QuoteListItem(quote: Quote, onClick: (quote:Quote) -> Unit) {
                 Text(
                     text = quote.text,
                     style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 4.dp)
+                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 4.dp),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Box(
                     modifier = Modifier
